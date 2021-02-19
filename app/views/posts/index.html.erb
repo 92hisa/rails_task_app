@@ -1,21 +1,35 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<h1>予定一覧</h1>
 
-<%= link_to "新規投稿", "posts/new" %>
+<div class="tidy">
+    <table class="table table-striped">
+      <thead>
+         <tr>
+            <th>ID</th>
+            <th>タイトル</th>
+            <th>開始日</th>
+            <th>終了日</th>
+            <th>更新日</th>
+            <th></th>
+            <th></th>
+            <th></th>
+         </tr>
+      </thead>
+      <tbody>
+        <% @post.each do |p| %>
+         <tr>
+            <td><%= p.id %></td>
+            <td><%= p.title %></td>
+            <td><%= p.start_Day %></td>
+            <td><%= p.End_Day %></td>
+            <td><%= p.updated_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M:%S') %></td>
+            <td><%= link_to "確認", post_path(p), class: "btn btn-info" %></td>
+            <td><%= link_to "編集", edit_post_path(p), class: "btn btn-primary" %></td>
+            <td><%= link_to "削除", post_path(p), method: :delete, class: "btn btn-warning" %></td>
+         </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
 
 
-<% @post.each do |p| %><br>
-    <h3>ID</h3>
-    <%= p.id %><br>
-    <h3>タイトル</h3>
-    <%= p.title %><br>
-    <h3>開始日</h3>
-    <%= p.start_Day %><br>
-    <h3>終了日</h3>
-    <%= p.End_Day %><br>
-    <h3>更新日</h3>
-    <%= p.updated_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M:%S') %><br>
-    <%= link_to "確認", post_path(p) %><br>
-    <%= link_to "編集", edit_post_path(p) %><br>
-    <%= link_to "削除", post_path(p), method: :delete %><br>
-<% end %>
+

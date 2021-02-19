@@ -1,13 +1,27 @@
-<h1>show.html.erb</h1>
+<h1>確認</h1>
 
-<h3>ID</h3>
-<%= @post.id %><br>
-<h3>タイトル</h3>
-<%= @post.title %><br>
-<h3>開始日</h3>
-<%= @post.start_Day %><br>
-<h3>終了日</h3>
-<%= @post.End_Day %><br> 
-<h3>内容</h3>
-<%= @post.content %><br>
-<%= link_to "一覧へ戻る", "/" %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>内容</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @post.id %></td>
+      <td><%= @post.title %></td>
+      <td><%= @post.start_Day %></td>
+      <td><%= @post.End_Day %></td>
+      <td><%= @post.content %></td>
+      <td><%= link_to "編集",edit_post_path(params[:id]), class: "btn btn-primary" %></td>
+      <td><%= link_to "削除", post_path(params[:id]), method: :delete, class: "btn btn-warning" %></td>
+    </tr>
+  </tbody>
+</table>
+<p><%= link_to "一覧へ戻る", "/" %></p>
